@@ -3,3 +3,5 @@ port: 27017
 db: mydb
 user: junny
 password: 1234
+
+token: MTAyNDg4ODMyNTgwMDIwMjMwMQ.GtIS1i.oLt6TXVnYAs_UYqFFtUZpO4oFzGblxgvCo7VT0
