@@ -29,7 +29,7 @@ public class Main extends ListenerAdapter {
       return;
     }
 
-    if (event.isFromType(ChannelType.PRIVATE)) {
+    if (event.isFromType(ChannelType.TEXT)) {
       System.out.printf("[PM] %s: %s\n", event.getAuthor().getName(),
           event.getMessage().getContentDisplay());
     } else {
