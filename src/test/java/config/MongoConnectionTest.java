@@ -13,7 +13,7 @@ class MongoConnectionTest {
   void mongoConnection(){
     ConfigProperties configProperties = ConfigProperties.properties();
     MongoConnection mongoConnection = new MongoConnection();
-    MongoDatabase mongoDatabase = mongoConnection.mongoDatabase(configProperties);
+    MongoDatabase mongoDatabase = mongoConnection.mongoDatabase();
 
     Assertions.assertEquals(mongoDatabase.getName(),configProperties.Db());
   }
