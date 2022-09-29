@@ -1,5 +1,4 @@
 url: 144.24.87.198
-port: 27017
-db: mydb
+db: /mydb
 user: junny
 password: 1234
