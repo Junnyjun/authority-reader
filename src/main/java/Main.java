@@ -9,9 +9,10 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class Main extends ListenerAdapter {
+  static ConfigProperties configProperties = ConfigProperties.properties();
 
   public static void main(String[] args) throws LoginException {
-    JDA jda = JDABuilder.createDefault("MTAyNDg4ODMyNTgwMDIwMjMwMQ.G9aAOU.o1kJaWr5OZe6ei03CiGpIBw7I_40Uiu3Aipydc")
+    JDA jda = JDABuilder.createDefault(configProperties.Token())
         .enableIntents(
             GatewayIntent.DIRECT_MESSAGES) // enables explicit access to message.getContentDisplay()
         .build();
@@ -24,13 +25,14 @@ public class Main extends ListenerAdapter {
 
   @Override
   public void onMessageReceived(MessageReceivedEvent event) {
+    if (event.getAuthor().isBot()) {
+      return;
+    }
 
     if (event.isFromType(ChannelType.PRIVATE)) {
       System.out.printf("[PM] %s: %s\n", event.getAuthor().getName(),
           event.getMessage().getContentDisplay());
-    } else if(event.getMessage().){
-
-    }else {
+    } else {
       System.out.printf("[%s][%s] %s: %s\n", event.getGuild().getName(),
           event.getTextChannel().getName(), event.getMember().getEffectiveName(),
           event.getMessage().getContentDisplay());

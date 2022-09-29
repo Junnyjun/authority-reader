@@ -10,6 +10,7 @@ public class ConfigProperties{
   private final String user;
   private final String port;
   private final String password;
+  private final String token;
 
   private ConfigProperties() {
     File yaml = new File("src/main/resources/properties.yaml");
@@ -27,6 +28,7 @@ public class ConfigProperties{
     this.port= properties.getProperty("port");
     this.user= properties.getProperty("user");
     this.password= properties.getProperty("password");
+    this.token= properties.getProperty("token");
 
     if (url == null || url.isBlank()){
       throw new IllegalArgumentException("URL IS NOT NULL");
@@ -42,6 +44,9 @@ public class ConfigProperties{
 
   public String Db() {
     return db;
+  }
+  public String Token(){
+    return token;
   }
 
   public String User() {
