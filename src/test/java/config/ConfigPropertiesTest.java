@@ -1,19 +1,17 @@
 package config;
 
-import static config.ConfigProperties.properties;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-@Disabled
+import static config.ConfigProperties.properties;
+
 class ConfigPropertiesTest {
 
-  @Test
-  void configTest(){
-    ConfigProperties configProperties = properties();
+    @Test
+    void configTest() {
+        ConfigProperties configProperties = properties();
 
-
-  }
+        Assertions.assertThat(configProperties.Port()).isEqualTo("27017");
+    }
 
 }
