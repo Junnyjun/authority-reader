@@ -4,4 +4,4 @@
 /out/
 /out/production/classes/
 /out/test/classes/
-/src/main/resources/properties.yaml
+src/main/resources/properties.yaml
