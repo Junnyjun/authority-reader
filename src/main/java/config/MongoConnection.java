@@ -10,8 +10,8 @@ public class MongoConnection {
 
   public MongoDatabase mongoDatabase() {
     String url = """
-        mongodb://%s:%s@%s:%s/%s&authMechanism=SCRAM-SHA-256"""
-        .formatted(configProperties.User(),
+        mongodb://%s:%s@%s:%s/%s&authMechanism=SCRAM-SHA-256
+        """.formatted(configProperties.User(),
             configProperties.Password(),
             configProperties.Url(),
             configProperties.Port(),

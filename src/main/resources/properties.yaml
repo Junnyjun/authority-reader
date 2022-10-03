@@ -1,5 +1,7 @@
 url: 144.24.87.198
 port: 27017
-db: mydb
-user: junny
+db: authorList
+user: auhor
 password: 1234
+
+token: MTAyNDg4ODMyNTgwMDIwMjMwMQ.GcKGMj.t6TYGjXEfcfjukaE1XKuW9X9oikGiSs0cfUrn8

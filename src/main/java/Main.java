@@ -1,42 +1,30 @@
 import config.ConfigProperties;
-import javax.security.auth.login.LoginException;
+import listeners.MessageListener;
+import listeners.PingPong;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.entities.ChannelType;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
-public class Main extends ListenerAdapter {
-  static ConfigProperties configProperties = ConfigProperties.properties();
+import javax.security.auth.login.LoginException;
 
-  public static void main(String[] args) throws LoginException {
-    JDA jda = JDABuilder.createDefault(configProperties.Token())
-        .enableIntents(
-            GatewayIntent.DIRECT_MESSAGES) // enables explicit access to message.getContentDisplay()
-        .addEventListeners()
-        .setActivity(Activity.watching("hello"))
-        .setMaxBufferSize(Integer.MAX_VALUE)
-        .setStatus(OnlineStatus.ONLINE)
-        .build();
-    jda.addEventListener(new Main());
-  }
+import static net.dv8tion.jda.api.requests.GatewayIntent.*;
 
-  @Override
-  public void onMessageReceived(MessageReceivedEvent event) {
-    if (event.getAuthor().isBot()) {
-      return;
+public class Main {
+    static ConfigProperties configProperties = ConfigProperties.properties();
+
+    public static void main(String[] args) throws LoginException {
+        JDA hello = JDABuilder.createDefault(configProperties.Token())
+                .enableIntents(
+                        DIRECT_MESSAGES) // enables explicit access to message.getContentDisplay()
+                .setActivity(Activity.watching("hello"))
+                .setMaxBufferSize(Integer.MAX_VALUE)
+                .setStatus(OnlineStatus.ONLINE)
+                .setEnabledIntents(DIRECT_MESSAGES, GUILD_VOICE_STATES, GUILD_EMOJIS, GUILD_MESSAGES, GUILD_MESSAGE_REACTIONS,GUILD_WEBHOOKS,GUILD_MESSAGE_TYPING,GUILD_MESSAGE_TYPING)
+                .build();
+
+        hello.addEventListener(new MessageListener());
+        hello.addEventListener(new PingPong());
     }
-
-    if (event.isFromType(ChannelType.TEXT)) {
-      System.out.printf("[PM] %s: %s\n", event.getAuthor().getName(),
-          event.getMessage().getContentDisplay());
-    } else {
-      System.out.printf("[%s][%s] %s: %s\n", event.getGuild().getName(),
-          event.getTextChannel().getName(), event.getMember().getEffectiveName(),
-          event.getMessage().getContentDisplay());
-    }
-  }
 }
